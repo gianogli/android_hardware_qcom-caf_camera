@@ -125,6 +125,10 @@ ifeq ($(TARGET_USES_EASEL), false)
 ifneq (,$(filter msm8996 msmcobalt sdm660 msm8998,$(TARGET_BOARD_PLATFORM)))
     LOCAL_CFLAGS += -DUBWC_PRESENT
 endif
+else
+LOCAL_C_INCLUDES += \
+        $(LOCAL_PATH)/easel/amber/camera/include \
+        $(LOCAL_PATH)/easel/amber/camera/libhdrplusclient/include
 endif
 
 ifneq (,$(filter msm8996,$(TARGET_BOARD_PLATFORM)))
