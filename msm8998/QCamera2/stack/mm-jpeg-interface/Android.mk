@@ -12,8 +12,6 @@ LOCAL_CFLAGS += -Wall -Wextra -Werror -Wno-unused-parameter -Wno-compound-token-
 LOCAL_C_INCLUDES+= $(kernel_includes)
 LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps)
 
-LIB2D_ROTATION=false
-
 LOCAL_C_INCLUDES += \
     frameworks/native/include/media/openmax \
     $(LOCAL_PATH)/inc \
@@ -22,12 +20,6 @@ LOCAL_C_INCLUDES += \
     $(LOCAL_PATH)/../../.. \
     $(LOCAL_PATH)/../../../mm-image-codec/qexif \
     $(LOCAL_PATH)/../../../mm-image-codec/qomx_core
-
-ifeq ($(strip $(LIB2D_ROTATION)),true)
-    LOCAL_C_INCLUDES += $(LOCAL_PATH)/../mm-lib2d-interface/inc
-    LOCAL_CFLAGS += -DLIB2D_ROTATION_ENABLE
-endif
-
 
 ifeq ($(strip $(TARGET_USES_ION)),true)
     LOCAL_CFLAGS += -DUSE_ION
@@ -75,9 +67,6 @@ LOCAL_LICENSE_KINDS    := SPDX-license-identifier-BSD
 LOCAL_LICENSE_CONDITIONS := notice
 LOCAL_PRELINK_MODULE   := false
 LOCAL_SHARED_LIBRARIES := libdl libcutils liblog libqomx_core libmmcamera_interface libutils
-ifeq ($(strip $(LIB2D_ROTATION)),true)
-    LOCAL_SHARED_LIBRARIES += libmmlib2d_interface
-endif
 LOCAL_MODULE_TAGS := optional
 LOCAL_VENDOR_MODULE := true
 
